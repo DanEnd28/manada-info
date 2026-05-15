@@ -9,153 +9,117 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --red:    #7B1818;
-      --red2:   #9A2020;
-      --gold:   #C8920A;
-      --gold2:  #E5A800;
-      --green:  #1E5C1A;
-      --brown:  #5C3317;
-      --blue:   #1E3A6E;
-      --terra:  #8B3A10;
-      --cream:  #FDF8ED;
-      --light:  #F7EFD8;
-      --gray:   #4A4A4A;
-      --faint:  rgba(123,24,24,.15);
-      --shadow: 0 2px 8px rgba(0,0,0,.12);
+      --red:   #7B1818;
+      --gold:  #C8920A;
+      --gold2: #E5A800;
+      --green: #1E5C1A;
+      --brown: #5C3317;
+      --blue:  #1E3A6E;
+      --cream: #FDF8ED;
+      --gray:  #4A4A4A;
+      --faint: rgba(123,24,24,.15);
+      --sh:    0 2px 8px rgba(0,0,0,.11);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Lato', sans-serif;
-      background: #c9bea7;
+      background: #b8ad98;
       background-image:
-        radial-gradient(circle at 20% 50%, rgba(123,24,24,.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(200,146,10,.06) 0%, transparent 40%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px 16px 40px;
-      min-height: 100vh;
+        radial-gradient(circle at 15% 60%, rgba(123,24,24,.1) 0%, transparent 45%),
+        radial-gradient(circle at 85% 15%, rgba(200,146,10,.07) 0%, transparent 40%);
+      display: flex; flex-direction: column; align-items: center;
+      padding: 18px 14px 36px; min-height: 100vh;
     }
     .ctrl-bar {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: white;
-      border-radius: 40px;
-      padding: 8px 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 3px 20px rgba(0,0,0,.18);
-      user-select: none;
+      display: flex; align-items: center; gap: 8px;
+      background: white; border-radius: 40px; padding: 7px 18px;
+      margin-bottom: 16px; box-shadow: 0 3px 20px rgba(0,0,0,.18);
+      user-select: none; flex-wrap: wrap; justify-content: center;
     }
-    .ctrl-label { font-size: 10px; letter-spacing: 1.5px; color: #888; text-transform: uppercase; font-weight: 700; }
-    .ctrl-sep { width: 1px; height: 20px; background: #e0e0e0; }
+    .ctrl-label { font-size: 9.5px; letter-spacing: 1.5px; color: #888; text-transform: uppercase; font-weight: 700; }
+    .ctrl-sep   { width: 1px; height: 18px; background: #ddd; }
     .ctrl-btn {
-      border: 2px solid var(--red);
-      background: transparent;
-      color: var(--red);
-      border-radius: 20px;
-      padding: 5px 20px;
-      font-family: 'Lato', sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background .18s, color .18s, box-shadow .18s;
-      letter-spacing: .5px;
+      border: 2px solid var(--red); background: transparent; color: var(--red);
+      border-radius: 20px; padding: 4px 18px;
+      font-family: 'Lato', sans-serif; font-size: 11.5px; font-weight: 700;
+      cursor: pointer; transition: background .18s, color .18s, box-shadow .18s; letter-spacing: .4px;
     }
     .ctrl-btn:hover { box-shadow: 0 0 0 3px rgba(123,24,24,.12); }
     .ctrl-btn.active { background: var(--red); color: white; box-shadow: 0 2px 10px rgba(123,24,24,.35); }
-    .ctrl-print { margin-left: 4px; border-color: var(--brown); color: var(--brown); font-size: 11px; }
-    .ctrl-print:hover { box-shadow: 0 0 0 3px rgba(92,51,23,.12); }
+    .ctrl-pdf { border-color: var(--brown); color: var(--brown); }
+    .ctrl-pdf:hover { box-shadow: 0 0 0 3px rgba(92,51,23,.12); }
     .page {
-      width: 8.5in;
-      height: 11in;
+      width: 8.5in; height: 11in;
       background: var(--cream);
-      padding: .42in .5in .38in;
+      padding: .38in .46in .32in;
       box-shadow: 0 8px 40px rgba(0,0,0,.35);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
     }
     .page::before {
-      content: '';
-      position: absolute;
-      inset: 5px;
-      border: 1px solid var(--faint);
-      pointer-events: none;
-      z-index: 0;
+      content: ''; position: absolute; inset: 5px;
+      border: 1px solid var(--faint); pointer-events: none; z-index: 0;
     }
     .hdr {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: 9px;
-      border-bottom: 3px solid var(--red);
-      margin-bottom: 7px;
-      flex-shrink: 0;
-      position: relative;
-      z-index: 1;
+      display: flex; align-items: center; justify-content: space-between;
+      padding-bottom: 8px; border-bottom: 3px solid var(--red);
+      margin-bottom: 6px; flex-shrink: 0; position: relative; z-index: 1;
     }
-    .hdr-logos-left  { display: flex; align-items: center; gap: 6px; }
-    .hdr-logos-right { display: flex; align-items: center; justify-content: flex-end; gap: 6px; }
-    .hdr-logo {
-      height: 56px; width: 56px;
-      object-fit: contain;
-      filter: drop-shadow(0 1px 4px rgba(0,0,0,.18));
-      transition: transform .2s;
-    }
-    .hdr-logo:hover { transform: scale(1.06); }
-    .hdr-logo-fallback {
-      height: 56px; width: 56px;
-      border-radius: 50%;
+    .hdr-logos { display: flex; align-items: center; gap: 5px; }
+    .hdr-logo { height: 58px; width: 58px; object-fit: contain; filter: drop-shadow(0 1px 4px rgba(0,0,0,.2)); }
+    .hdr-logo-fb {
+      height: 58px; width: 58px; border-radius: 50%;
       background: linear-gradient(135deg, var(--red), var(--brown));
       display: flex; align-items: center; justify-content: center;
-      font-size: 22px; flex-shrink: 0;
+      font-size: 20px; flex-shrink: 0; color: white; font-weight: 700;
     }
-    .hdr-center { text-align: center; flex: 1; padding: 0 12px; }
+    .hdr-center { text-align: center; flex: 1; padding: 0 10px; }
     .hdr-eyebrow { font-size: 7.5px; letter-spacing: 3.5px; color: var(--gold); text-transform: uppercase; font-weight: 700; }
-    .hdr-title { font-family: 'Cinzel', serif; font-size: 30px; font-weight: 700; color: var(--red); line-height: 1; letter-spacing: -.5px; }
-    .hdr-sub { font-size: 7.5px; color: #999; letter-spacing: 1.5px; margin-top: 2px; text-transform: uppercase; }
-    .lema { text-align: center; margin-bottom: 9px; flex-shrink: 0; position: relative; z-index: 1; }
+    .hdr-title   { font-family: 'Cinzel', serif; font-size: 31px; font-weight: 700; color: var(--red); line-height: 1; letter-spacing: -.5px; }
+    .hdr-sub     { font-size: 7px; color: #aaa; letter-spacing: 1.5px; margin-top: 2px; text-transform: uppercase; }
+    .lema { text-align: center; margin-bottom: 7px; flex-shrink: 0; position: relative; z-index: 1; }
     .lema-pill {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: linear-gradient(135deg, var(--red) 0%, #a02828 100%);
-      color: white; padding: 3.5px 24px 4.5px; border-radius: 30px;
-      font-size: 9.5px; letter-spacing: 2px; box-shadow: 0 2px 10px rgba(123,24,24,.3);
+      display: inline-flex; align-items: center; gap: 9px;
+      background: linear-gradient(135deg, var(--red), #a02828);
+      color: white; padding: 3px 22px 4px; border-radius: 30px;
+      font-size: 9.5px; letter-spacing: 2px; box-shadow: 0 2px 10px rgba(123,24,24,.28);
     }
-    .lema-label { opacity: .7; font-size: 8px; letter-spacing: 3px; text-transform: uppercase; }
+    .lema-label { opacity: .65; font-size: 7.5px; letter-spacing: 3px; text-transform: uppercase; }
     .lema-text  { font-style: italic; font-weight: 700; font-size: 11px; }
-    .lema-dot   { opacity: .4; }
+    .lema-dot   { opacity: .35; }
     .grid2 {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-      margin-bottom: 9px; flex-shrink: 0; position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 9px;
+      margin-bottom: 8px; flex-shrink: 0; position: relative; z-index: 1;
     }
-    .card { background: white; border-radius: 8px; padding: 9px 11px; border-left: 3.5px solid var(--red); box-shadow: var(--shadow); }
+    .card { background: white; border-radius: 7px; padding: 10px 12px; border-left: 3.5px solid var(--red); box-shadow: var(--sh); }
     .card.c-green { border-left-color: var(--green); }
     .card.c-gold  { border-left-color: var(--gold); }
     .c-title {
       font-family: 'Cinzel', serif; font-size: 7px; font-weight: 700;
       letter-spacing: 2.5px; text-transform: uppercase; color: var(--red);
-      margin-bottom: 6px; display: flex; align-items: center; gap: 5px; white-space: nowrap;
+      margin-bottom: 7px; display: flex; align-items: center; gap: 5px; white-space: nowrap;
     }
     .card.c-green .c-title { color: var(--green); }
-    .card.c-gold  .c-title { color: #a07000; }
-    .c-title::after { content: ''; flex: 1; height: 1px; background: currentColor; opacity: .2; min-width: 10px; }
-    .oracion-layout { display: flex; gap: 9px; align-items: flex-start; }
+    .card.c-gold  .c-title { color: #8B6500; }
+    .c-title::after { content: ''; flex: 1; height: 1px; background: currentColor; opacity: .2; min-width: 8px; }
+    .oracion-layout { display: flex; gap: 10px; align-items: flex-start; }
     .oracion-img-wrap {
-      width: 58px; height: 78px; border-radius: 5px; overflow: hidden;
-      flex-shrink: 0; background: var(--brown); box-shadow: 0 2px 6px rgba(0,0,0,.18);
+      width: 70px; height: 95px; border-radius: 6px; overflow: hidden;
+      flex-shrink: 0; background: #3a2010; box-shadow: 0 2px 8px rgba(0,0,0,.25);
     }
-    .oracion-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; filter: sepia(20%) contrast(1.05); }
-    .oracion-img-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 36px; }
-    .oracion-body { font-size: 9.5px; line-height: 1.65; color: var(--gray); font-style: italic; }
-    .oracion-amen { display: block; margin-top: 4px; font-style: normal; font-weight: 700; color: var(--red); font-size: 10px; }
-    .ley-item { font-size: 9.5px; color: var(--gray); font-style: italic; padding: 3px 0 3px 9px; border-left: 2.5px solid var(--green); margin-bottom: 5px; line-height: 1.4; }
+    .oracion-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; filter: sepia(15%) contrast(1.08); }
+    .oracion-body { font-size: 9.5px; line-height: 1.68; color: var(--gray); font-style: italic; }
+    .oracion-amen { display: block; margin-top: 5px; font-style: normal; font-weight: 700; color: var(--red); font-size: 10px; }
+    .ley-item {
+      font-size: 9.5px; color: var(--gray); font-style: italic;
+      padding: 4px 0 4px 9px; border-left: 2.5px solid var(--green);
+      margin-bottom: 5px; line-height: 1.45;
+    }
     .ley-item:last-child { margin-bottom: 0; }
-    .promesa-body { font-size: 9.5px; line-height: 1.65; color: var(--gray); }
-    .promesa-intro { font-weight: 700; color: #8B6500; font-style: normal; }
-    .right-col { display: flex; flex-direction: column; gap: 9px; }
-    .maximas-wrap { margin-bottom: 9px; flex-shrink: 0; position: relative; z-index: 1; }
+    .promesa-body { font-size: 9.5px; line-height: 1.68; color: var(--gray); }
+    .promesa-intro { font-weight: 700; color: #7A5800; font-style: normal; }
+    .right-col { display: flex; flex-direction: column; gap: 8px; }
+    .maximas-wrap { margin-bottom: 8px; flex-shrink: 0; position: relative; z-index: 1; }
     .section-title {
       font-family: 'Cinzel', serif; font-size: 7.5px; font-weight: 700;
       letter-spacing: 3px; text-transform: uppercase; color: var(--brown);
@@ -165,53 +129,70 @@
     .section-title::before, .section-title::after { content: ''; flex: 1; height: 1px; background: var(--brown); opacity: .2; }
     .maximas-row { display: flex; gap: 6px; }
     .maxima {
-      flex: 1; border-radius: 8px; padding: 8px 6px 9px; text-align: center;
-      position: relative; cursor: help;
-      transition: transform .15s, box-shadow .15s;
-      color: white; overflow: visible;
+      flex: 1; border-radius: 9px; padding: 10px 7px 12px;
+      text-align: center; position: relative; cursor: help;
+      transition: transform .15s, box-shadow .15s; color: white; overflow: visible;
     }
-    .maxima:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,.22); }
+    .maxima:hover { transform: translateY(-3px); box-shadow: 0 7px 20px rgba(0,0,0,.22); }
     .maxima:nth-child(1) { background: linear-gradient(155deg, #7B1818, #A02828); }
     .maxima:nth-child(2) { background: linear-gradient(155deg, #8B3A10, #B04C20); }
     .maxima:nth-child(3) { background: linear-gradient(155deg, #5C3317, #7A4A25); }
     .maxima:nth-child(4) { background: linear-gradient(155deg, #1E5C1A, #2A7A24); }
     .maxima:nth-child(5) { background: linear-gradient(155deg, #1E3A6E, #2A5090); }
-    .maxima-n { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700; opacity: .22; line-height: 1; }
-    .maxima-t { font-size: 7.5px; font-weight: 700; line-height: 1.3; margin-top: 2px; letter-spacing: .2px; }
+    .maxima-n { font-family: 'Cinzel', serif; font-size: 24px; font-weight: 700; opacity: .2; line-height: 1; }
+    .maxima-t { font-size: 7.5px; font-weight: 700; line-height: 1.35; margin-top: 3px; letter-spacing: .2px; }
     .tip {
-      display: none; position: absolute;
-      bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
-      background: rgba(15,15,15,.92); backdrop-filter: blur(6px);
-      color: #f0f0f0; font-size: 8px; font-weight: 400; line-height: 1.5;
-      padding: 7px 9px; border-radius: 7px; width: 138px;
-      text-align: left; z-index: 100; pointer-events: none;
-      box-shadow: 0 6px 20px rgba(0,0,0,.35);
+      display: none; position: absolute; bottom: calc(100% + 8px); left: 50%;
+      transform: translateX(-50%);
+      background: rgba(12,12,12,.93); backdrop-filter: blur(6px);
+      color: #eee; font-size: 8px; line-height: 1.5;
+      padding: 7px 9px; border-radius: 7px; width: 140px;
+      text-align: left; z-index: 200; pointer-events: none;
+      box-shadow: 0 6px 20px rgba(0,0,0,.4);
     }
     .tip::after {
       content: ''; position: absolute; top: 100%; left: 50%;
       transform: translateX(-50%); border: 5px solid transparent;
-      border-top-color: rgba(15,15,15,.92);
+      border-top-color: rgba(12,12,12,.93);
     }
     .maxima:hover .tip, .personaje:hover .tip { display: block; }
-    .personajes-wrap { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; position: relative; z-index: 1; }
-    .personajes-row { display: flex; justify-content: space-between; gap: 5px; align-items: flex-end; }
-    .personaje { flex: 1; text-align: center; position: relative; cursor: help; }
-    .pj-ring {
-      width: 74px; height: 74px; border-radius: 50%;
-      border: 3px solid var(--gold); overflow: hidden;
-      margin: 0 auto 5px; background: var(--brown);
-      box-shadow: 0 3px 12px rgba(0,0,0,.22), 0 0 0 1px rgba(200,146,10,.3);
-      transition: box-shadow .2s;
+    .personajes-wrap {
+      flex: 1; display: flex; flex-direction: column;
+      position: relative; z-index: 1; min-height: 0;
     }
-    .personaje:hover .pj-ring { box-shadow: 0 6px 20px rgba(0,0,0,.3), 0 0 0 2px var(--gold2); }
+    .personajes-band {
+      flex: 1; background: linear-gradient(to bottom, rgba(92,51,23,.06), rgba(92,51,23,.12));
+      border-radius: 10px; border: 1px solid rgba(200,146,10,.2);
+      padding: 10px 12px 12px; display: flex; flex-direction: column;
+    }
+    .personajes-row { flex: 1; display: flex; gap: 8px; align-items: center; }
+    .personaje {
+      flex: 1; display: flex; flex-direction: column; align-items: center;
+      text-align: center; position: relative; cursor: help; gap: 4px;
+    }
+    .pj-ring {
+      border-radius: 50%; border: 3px solid var(--gold); overflow: hidden;
+      background: var(--brown); flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(0,0,0,.25), 0 0 0 1px rgba(200,146,10,.25);
+      transition: box-shadow .2s, transform .2s;
+      width: var(--pj-size, 110px); height: var(--pj-size, 110px);
+    }
+    .personaje:hover .pj-ring {
+      box-shadow: 0 7px 22px rgba(0,0,0,.32), 0 0 0 2.5px var(--gold2);
+      transform: scale(1.04);
+    }
     .pj-ring img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
-    .personaje:hover .pj-ring img { transform: scale(1.1); }
-    .pj-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 30px; }
-    .pj-name { font-family: 'Cinzel', serif; font-size: 8.5px; font-weight: 700; color: var(--brown); line-height: 1.2; }
-    .pj-role { font-size: 7px; color: #aaa; font-style: italic; margin-top: 1px; }
-    .personaje .tip { width: 120px; }
+    .personaje:hover .pj-ring img { transform: scale(1.08); }
+    .pj-ph {
+      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.7); background: var(--brown);
+      font-family: 'Cinzel', serif; font-weight: 700;
+    }
+    .pj-name { font-family: 'Cinzel', serif; font-size: 9px; font-weight: 700; color: var(--brown); line-height: 1.2; }
+    .pj-role { font-size: 7.5px; color: #999; font-style: italic; }
+    .personaje .tip { width: 118px; bottom: calc(100% + 6px); }
     .page-footer {
-      flex-shrink: 0; margin-top: 9px; padding-top: 6px;
+      flex-shrink: 0; margin-top: 7px; padding-top: 5px;
       border-top: 1px solid var(--faint); text-align: center;
       font-size: 6.5px; color: #bbb; letter-spacing: 1.5px; text-transform: uppercase;
       position: relative; z-index: 1;
@@ -219,10 +200,11 @@
     @media print {
       body { background: white !important; padding: 0; margin: 0; }
       .ctrl-bar { display: none !important; }
-      .page { width: 8.5in !important; height: 11in !important; box-shadow: none !important; padding: .4in .48in .36in !important; }
+      .page { width: 8.5in !important; height: 11in !important; box-shadow: none !important; padding: .36in .44in .30in !important; }
       @page { size: letter portrait; margin: 0; }
       .tip { display: none !important; }
       .maxima, .personaje { cursor: default; }
+      .pj-ring { box-shadow: 0 2px 6px rgba(0,0,0,.18) !important; transform: none !important; }
       .hdr-logo { filter: none; }
     }
   </style>
@@ -231,82 +213,79 @@
 
 <script>
 const IMG = {
-  // Logos institucionales — reemplaza con URLs reales del grupo
-  florDeLis:   'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/World_Scout_Emblem.svg/200px-World_Scout_Emblem.svg.png',
-  logoGrupo:   'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/La_Salle_Brothers_logo.svg/200px-La_Salle_Brothers_logo.svg.png',
-  logoManada:  'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/World_Scout_Emblem.svg/200px-World_Scout_Emblem.svg.png',
-  // Lobo para la oracion
-  loboOracion: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Canis_lupus_002.jpg/320px-Canis_lupus_002.jpg',
-  // Personajes del Libro de la Selva
-  hathi:    'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Asian_elephant_-_melbourne_zoo.jpg/300px-Asian_elephant_-_melbourne_zoo.jpg',
-  kaa:      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Indian_python.jpg/300px-Indian_python.jpg',
-  akela:    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Canis_lupus_002.jpg/300px-Canis_lupus_002.jpg',
-  baloo:    'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Melursus_ursinus_-_Somanahalli_Tarikere_road.jpg/300px-Melursus_ursinus_-_Somanahalli_Tarikere_road.jpg',
-  bagheera: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Leopard_africa.jpg/300px-Leopard_africa.jpg',
-  raksha:   'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Mexican_wolf_fg03.jpg/300px-Mexican_wolf_fg03.jpg',
+  florDeLis:   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbDuqJLNhCp28m29TX6bZdrXO6ZLJfCqS-rA&s',
+  logoGrupo:   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSe5CtHjlCiRvxDNPNKURbyHIccBa860M11Q&s',
+  logoManada:  'https://danend28.github.io/Plantilla-Programa-Scout/images/rama-manada.jpg',
+  loboOracion: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Howlsnow.jpg/400px-Howlsnow.jpg',
+  hathi:    'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Asian_elephant_-_melbourne_zoo.jpg/400px-Asian_elephant_-_melbourne_zoo.jpg',
+  kaa:      'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Python_molurus.jpg/400px-Python_molurus.jpg',
+  akela:    'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Howlsnow.jpg/400px-Howlsnow.jpg',
+  baloo:    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Sloth_bear_carolina.jpg/400px-Sloth_bear_carolina.jpg',
+  bagheera: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Leopard_4.5.jpg/400px-Leopard_4.5.jpg',
+  raksha:   'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Mexican_wolf_fg03.jpg/400px-Mexican_wolf_fg03.jpg',
 };
 
 const TEXTOS = {
   nino: {
-    titulo: 'Cachorro', protagonista: 'El Lobato', pronombre: 'del Lobato',
+    titulo: 'Cachorro', pronombre: 'del Lobato',
     oracion: 'Oh Dulce y buen señor mío,<br>enséñame a ser humilde y bondadoso,<br>a imitar tu ejemplo,<br>a amarte con todo mi corazón<br>y a seguir el camino que me ha de llevar<br>al cielo junto a ti.',
     ley: ['El Lobato escucha y obedece al Viejo Lobo.', 'El Lobato se vence a sí mismo.'],
     promesa: 'Cumplir mis deberes para con Dios y la patria,<br>obedecer la Ley de la Manada<br>y hacer una buena acción a alguien cada día.',
     maximas: [
-      { texto: 'El Lobato siempre está alegre',                   tip: 'Un lobato alegre contagia energía positiva a su seisena y hace que cada actividad sea una aventura para todos.' },
-      { texto: 'El Lobato siempre está limpio',                   tip: 'La limpieza en el cuerpo, ropa y entorno refleja respeto hacia uno mismo y hacia los demás.' },
-      { texto: 'El Lobato siempre dice la verdad',                tip: 'La honestidad es la base de la confianza. Un lobato veraz es confiable para su seisena y su familia.' },
-      { texto: 'El Lobato tiene los ojos y oídos bien abiertos', tip: 'Estar atento al entorno te permite ayudar a quienes lo necesitan y aprender de todo lo que te rodea.' },
-      { texto: 'El Lobato piensa primero en los demás',           tip: 'El servicio es el corazón del escultismo. Pensar en los demás antes que en uno mismo nos hace mejores personas.' },
+      { texto: 'El Lobato siempre está alegre',                    tip: 'Un lobato alegre contagia energía positiva a su seisena y hace que cada actividad sea una aventura para todos.' },
+      { texto: 'El Lobato siempre está limpio',                    tip: 'La limpieza en el cuerpo, la ropa y el entorno refleja respeto hacia uno mismo y hacia los demás.' },
+      { texto: 'El Lobato siempre dice la verdad',                 tip: 'La honestidad es la base de la confianza. Un lobato veraz es confiable para su seisena y su familia.' },
+      { texto: 'El Lobato tiene los ojos y oídos bien abiertos',  tip: 'Estar atento al entorno te permite ayudar a quienes lo necesitan y aprender de todo lo que te rodea.' },
+      { texto: 'El Lobato piensa primero en los demás',            tip: 'El servicio es el corazón del escultismo. Pensar en los demás antes que en uno mismo nos hace mejores personas.' },
     ],
   },
   nina: {
-    titulo: 'Cachorra', protagonista: 'La Lobezna', pronombre: 'de la Lobezna',
+    titulo: 'Cachorra', pronombre: 'de la Lobezna',
     oracion: 'Oh Dulce y buen señor mío,<br>enséñame a ser humilde y bondadosa,<br>a imitar tu ejemplo,<br>a amarte con todo mi corazón<br>y a seguir el camino que me ha de llevar<br>al cielo junto a ti.',
     ley: ['La Lobezna escucha y obedece al Viejo Lobo.', 'La Lobezna se vence a sí misma.'],
     promesa: 'Cumplir mis deberes para con Dios y la patria,<br>obedecer la Ley de la Manada<br>y hacer una buena acción a alguien cada día.',
     maximas: [
-      { texto: 'La Lobezna siempre está alegre',                   tip: 'Una lobezna alegre contagia energía positiva a su seisena y hace que cada actividad sea una aventura para todos.' },
-      { texto: 'La Lobezna siempre está limpia',                   tip: 'La limpieza en el cuerpo, ropa y entorno refleja respeto hacia una misma y hacia los demás.' },
-      { texto: 'La Lobezna siempre dice la verdad',                tip: 'La honestidad es la base de la confianza. Una lobezna veraz es confiable para su seisena y su familia.' },
-      { texto: 'La Lobezna tiene los ojos y oídos bien abiertos', tip: 'Estar atenta al entorno te permite ayudar a quienes lo necesitan y aprender de todo lo que te rodea.' },
-      { texto: 'La Lobezna piensa primero en los demás',           tip: 'El servicio es el corazón del escultismo. Pensar en los demás antes que en una misma nos hace mejores personas.' },
+      { texto: 'La Lobezna siempre está alegre',                    tip: 'Una lobezna alegre contagia energía positiva a su seisena y hace que cada actividad sea una aventura para todos.' },
+      { texto: 'La Lobezna siempre está limpia',                    tip: 'La limpieza en el cuerpo, la ropa y el entorno refleja respeto hacia una misma y hacia los demás.' },
+      { texto: 'La Lobezna siempre dice la verdad',                 tip: 'La honestidad es la base de la confianza. Una lobezna veraz es confiable para su seisena y su familia.' },
+      { texto: 'La Lobezna tiene los ojos y oídos bien abiertos',  tip: 'Estar atenta al entorno te permite ayudar a quienes lo necesitan y aprender de todo lo que te rodea.' },
+      { texto: 'La Lobezna piensa primero en los demás',            tip: 'El servicio es el corazón del escultismo. Pensar en los demás antes que en una misma nos hace mejores personas.' },
     ],
   },
 };
 
 const PERSONAJES = [
-  { key: 'hathi',    nombre: 'Hathi',    rol: 'El Elefante',    emoji: '🐘', desc: 'Rey y guardián de la selva. Representa la sabiduría ancestral, la memoria y la fuerza serena. Custodio de las leyes más antiguas.' },
-  { key: 'kaa',      nombre: 'Kaa',      rol: 'La Pitón',       emoji: '🐍', desc: 'Símbolo del conocimiento profundo. Aunque imponente, es guardián leal del código de la selva y protector de los más jóvenes.' },
-  { key: 'akela',    nombre: 'Akela',    rol: 'El Gran Lobo',   emoji: '🐺', desc: 'Líder de la Manada del Seeonee. Representa la autoridad justa, la responsabilidad y el liderazgo sabio y sereno.' },
-  { key: 'baloo',    nombre: 'Baloo',    rol: 'El Oso Maestro', emoji: '🐻', desc: 'Maestro paciente de la Ley de la Selva. Alegre y bondadoso, enseña con amor y dedicación a todos los cachorritos.' },
-  { key: 'bagheera', nombre: 'Bagheera', rol: 'La Pantera',     emoji: '🐆', desc: 'Astuta, elegante y valiente. Guardiana silenciosa y protectora incondicional, símbolo de lealtad y coraje.' },
-  { key: 'raksha',   nombre: 'Raksha',   rol: 'La Loba Madre',  emoji: '🐺', desc: 'Madre adoptiva de Mowgli. Representa el amor incondicional, la protección y la ternura. Madre espiritual de todos los lobatos.' },
+  { key: 'hathi',    nombre: 'Hathi',    rol: 'El Elefante',      ph: 'H', desc: 'Rey y guardián de la selva. Sabiduría ancestral, memoria y fuerza serena. Custodio de las leyes más antiguas.' },
+  { key: 'kaa',      nombre: 'Kaa',      rol: 'La Gran Pitón',  ph: 'K', desc: 'Símbolo del conocimiento profundo. Guardián leal del código de la selva y protector de los más jóvenes.' },
+  { key: 'akela',    nombre: 'Akela',    rol: 'El Gran Lobo',     ph: 'A', desc: 'Líder de la Manada del Seeonee. Autoridad justa, responsabilidad y liderazgo sabio y sereno.' },
+  { key: 'baloo',    nombre: 'Baloo',    rol: 'El Oso Maestro',   ph: 'B', desc: 'Maestro paciente de la Ley de la Selva. Alegre y bondadoso, enseña con amor a todos los cachorritos.' },
+  { key: 'bagheera', nombre: 'Bagheera', rol: 'La Pantera Negra', ph: 'B', desc: 'Astuta, elegante y valiente. Protectora incondicional, símbolo de lealtad y coraje silencioso.' },
+  { key: 'raksha',   nombre: 'Raksha',   rol: 'La Loba Madre',    ph: 'R', desc: 'Madre adoptiva de Mowgli. Amor incondicional, protección y ternura. Madre espiritual de todos los lobatos.' },
 ];
 <\/script>
 
 <div class="ctrl-bar">
   <span class="ctrl-label">Versión</span>
   <div class="ctrl-sep"></div>
-  <button class="ctrl-btn active" id="btn-nino" onclick="render('nino')">&#128058; Cachorro (niño)</button>
-  <button class="ctrl-btn"        id="btn-nina" onclick="render('nina')">&#128058; Cachorra (niña)</button>
+  <button class="ctrl-btn active" id="btn-nino" onclick="render('nino')">Cachorro — niño</button>
+  <button class="ctrl-btn"        id="btn-nina" onclick="render('nina')">Cachorra — niña</button>
   <div class="ctrl-sep"></div>
-  <button class="ctrl-btn ctrl-print" onclick="window.print()">&#128424;&#65039; Imprimir</button>
+  <button class="ctrl-btn ctrl-pdf" onclick="window.print()">Guardar PDF / Imprimir</button>
 </div>
 
-<div class="page">
+<div class="page" id="page">
   <header class="hdr">
-    <div class="hdr-logos-left">
-      <img id="logo-flor"  class="hdr-logo" src="" alt="Flor de Lis" onerror="this.replaceWith(mkFallback('⚜️'))">
-      <img id="logo-grupo" class="hdr-logo" src="" alt="La Salle"    onerror="this.replaceWith(mkFallback('⛪'))">
+    <div class="hdr-logos">
+      <img id="logo-flor"  class="hdr-logo" src="" alt="Flor de Lis Scout" onerror="this.replaceWith(mkFb('⚜'))">
+      <img id="logo-grupo" class="hdr-logo" src="" alt="Grupo Scout La Salle" onerror="this.replaceWith(mkFb('LS'))">
     </div>
     <div class="hdr-center">
       <div class="hdr-eyebrow">Para Ti,</div>
       <div class="hdr-title" id="hdr-titulo">Cachorro</div>
       <div class="hdr-sub">Manada &middot; Grupo Scout La Salle Guaparo N&deg;1</div>
     </div>
-    <div class="hdr-logos-right">
-      <img id="logo-manada" class="hdr-logo" src="" alt="Manada" onerror="this.replaceWith(mkFallback('🐾'))">
+    <div class="hdr-logos">
+      <img id="logo-manada" class="hdr-logo" src="" alt="Rama Manada" onerror="this.replaceWith(mkFb('M'))">
     </div>
   </header>
 
@@ -323,7 +302,7 @@ const PERSONAJES = [
       <div class="c-title" id="title-oracion">Oración del Lobato</div>
       <div class="oracion-layout">
         <div class="oracion-img-wrap">
-          <img id="img-lobo" src="" alt="Lobo" onerror="this.parentElement.innerHTML='<div class=oracion-img-fallback>&#128058;</div>'">
+          <img id="img-lobo" src="" alt="Lobo" onerror="this.parentElement.style.background='#3a2010'; this.style.display='none'">
         </div>
         <div class="oracion-body">
           <span id="oracion-text"></span>
@@ -353,7 +332,9 @@ const PERSONAJES = [
 
   <div class="personajes-wrap">
     <div class="section-title">Los Personajes del Libro de la Selva</div>
-    <div class="personajes-row" id="personajes-row"></div>
+    <div class="personajes-band">
+      <div class="personajes-row" id="personajes-row"></div>
+    </div>
   </div>
 
   <footer class="page-footer">
@@ -364,23 +345,32 @@ const PERSONAJES = [
 </div>
 
 <script>
-function mkFallback(e) {
+function mkFb(txt) {
   const d = document.createElement('div');
-  d.className = 'hdr-logo-fallback';
-  d.textContent = e;
+  d.className = 'hdr-logo-fb';
+  d.textContent = txt;
   return d;
 }
 function setLogos() {
-  document.getElementById('logo-flor').src    = IMG.florDeLis;
-  document.getElementById('logo-grupo').src   = IMG.logoGrupo;
-  document.getElementById('logo-manada').src  = IMG.logoManada;
-  document.getElementById('img-lobo').src     = IMG.loboOracion;
+  document.getElementById('logo-flor').src   = IMG.florDeLis;
+  document.getElementById('logo-grupo').src  = IMG.logoGrupo;
+  document.getElementById('logo-manada').src = IMG.logoManada;
+  document.getElementById('img-lobo').src    = IMG.loboOracion;
+}
+function calcPjSize() {
+  const band = document.querySelector('.personajes-band');
+  if (!band) return 100;
+  const h = band.clientHeight - 24;
+  return Math.max(80, Math.min(h - 42, 145));
 }
 function renderPersonajes() {
+  const sz = calcPjSize();
+  document.documentElement.style.setProperty('--pj-size', sz + 'px');
   document.getElementById('personajes-row').innerHTML = PERSONAJES.map(p => `
     <div class="personaje">
       <div class="pj-ring">
-        <img src="${IMG[p.key]}" alt="${p.nombre}" onerror="this.parentElement.innerHTML='<div class=pj-fallback>${p.emoji}</div>'">
+        <img src="${IMG[p.key]}" alt="${p.nombre}"
+             onerror="this.outerHTML='<div class=pj-ph style=font-size:${Math.round(sz*.28)}px>${p.ph}</div>'">
       </div>
       <div class="pj-name">${p.nombre}</div>
       <div class="pj-role">${p.rol}</div>
@@ -391,23 +381,23 @@ function render(g) {
   const t = TEXTOS[g];
   document.getElementById('btn-nino').classList.toggle('active', g === 'nino');
   document.getElementById('btn-nina').classList.toggle('active', g === 'nina');
-  document.getElementById('hdr-titulo').textContent     = t.titulo;
-  document.getElementById('title-oracion').textContent  = 'Oración ' + t.pronombre;
-  document.getElementById('title-promesa').textContent  = 'Promesa ' + t.pronombre;
-  document.getElementById('oracion-text').innerHTML     = t.oracion + '<br>';
-  document.getElementById('ley-items').innerHTML        = t.ley.map(l => `<div class="ley-item">${l}</div>`).join('');
-  document.getElementById('promesa-text').innerHTML     = t.promesa;
-  document.getElementById('maximas-row').innerHTML      = t.maximas.map((m,i) => `
+  document.getElementById('hdr-titulo').textContent    = t.titulo;
+  document.getElementById('title-oracion').textContent = 'Oración ' + t.pronombre;
+  document.getElementById('title-promesa').textContent = 'Promesa ' + t.pronombre;
+  document.getElementById('oracion-text').innerHTML    = t.oracion + '<br>';
+  document.getElementById('ley-items').innerHTML       = t.ley.map(l => `<div class="ley-item">${l}</div>`).join('');
+  document.getElementById('promesa-text').innerHTML    = t.promesa;
+  document.getElementById('maximas-row').innerHTML     = t.maximas.map((m, i) => `
     <div class="maxima">
-      <div class="maxima-n">${i+1}</div>
+      <div class="maxima-n">${i + 1}</div>
       <div class="maxima-t">${m.texto}</div>
       <div class="tip">${m.tip}</div>
     </div>`).join('');
 }
 function scalePage() {
-  const page = document.querySelector('.page');
-  const vw = window.innerWidth - 32;
-  const pw = 816;
+  const page = document.getElementById('page');
+  const vw   = window.innerWidth - 28;
+  const pw   = 816;
   if (vw < pw) {
     const s = vw / pw;
     page.style.transform       = `scale(${s})`;
@@ -417,8 +407,12 @@ function scalePage() {
     page.style.transform    = '';
     page.style.marginBottom = '';
   }
+  setTimeout(() => {
+    const sz = calcPjSize();
+    document.documentElement.style.setProperty('--pj-size', sz + 'px');
+  }, 60);
 }
-setLogos(); renderPersonajes(); render('nino'); scalePage();
+setLogos(); render('nino'); renderPersonajes(); scalePage();
 window.addEventListener('resize', scalePage);
 <\/script>
 
