@@ -6,7 +6,7 @@
   <title>Para Ti, Cachorro · Manada La Salle Guaparo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
       --red:   #7B1818;
@@ -16,45 +16,41 @@
       --brown: #5C3317;
       --blue:  #1E3A6E;
       --cream: #FDF8ED;
-      --gray:  #4A4A4A;
+      --gray:  #444;
       --faint: rgba(123,24,24,.15);
-      --sh:    0 2px 8px rgba(0,0,0,.11);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Lato', sans-serif;
-      background: #b8ad98;
-      background-image:
-        radial-gradient(circle at 15% 60%, rgba(123,24,24,.1) 0%, transparent 45%),
-        radial-gradient(circle at 85% 15%, rgba(200,146,10,.07) 0%, transparent 40%);
+      background: #b5aa95;
       display: flex; flex-direction: column; align-items: center;
       padding: 18px 14px 36px; min-height: 100vh;
     }
     .ctrl-bar {
-      display: flex; align-items: center; gap: 8px;
-      background: white; border-radius: 40px; padding: 7px 18px;
-      margin-bottom: 16px; box-shadow: 0 3px 20px rgba(0,0,0,.18);
-      user-select: none; flex-wrap: wrap; justify-content: center;
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      justify-content: center; background: white; border-radius: 40px;
+      padding: 7px 20px; margin-bottom: 16px;
+      box-shadow: 0 3px 20px rgba(0,0,0,.18); user-select: none;
     }
-    .ctrl-label { font-size: 9.5px; letter-spacing: 1.5px; color: #888; text-transform: uppercase; font-weight: 700; }
-    .ctrl-sep   { width: 1px; height: 18px; background: #ddd; }
+    .ctrl-label { font-size: 9px; letter-spacing: 1.5px; color: #999; text-transform: uppercase; font-weight: 700; }
+    .ctrl-sep   { width: 1px; height: 16px; background: #ddd; }
     .ctrl-btn {
       border: 2px solid var(--red); background: transparent; color: var(--red);
-      border-radius: 20px; padding: 4px 18px;
-      font-family: 'Lato', sans-serif; font-size: 11.5px; font-weight: 700;
-      cursor: pointer; transition: background .18s, color .18s, box-shadow .18s; letter-spacing: .4px;
+      border-radius: 20px; padding: 4px 16px;
+      font-family: 'Lato'; font-size: 11px; font-weight: 700;
+      cursor: pointer; transition: .15s; letter-spacing: .3px;
     }
-    .ctrl-btn:hover { box-shadow: 0 0 0 3px rgba(123,24,24,.12); }
-    .ctrl-btn.active { background: var(--red); color: white; box-shadow: 0 2px 10px rgba(123,24,24,.35); }
+    .ctrl-btn:hover  { background: rgba(123,24,24,.06); }
+    .ctrl-btn.active { background: var(--red); color: white; box-shadow: 0 2px 10px rgba(123,24,24,.3); }
     .ctrl-pdf { border-color: var(--brown); color: var(--brown); }
-    .ctrl-pdf:hover { box-shadow: 0 0 0 3px rgba(92,51,23,.12); }
+    .ctrl-pdf:hover { background: rgba(92,51,23,.06); }
     .page {
       width: 8.5in; height: 11in;
       background: var(--cream);
-      padding: .38in .46in .32in;
+      padding: .32in .44in .28in;
       box-shadow: 0 8px 40px rgba(0,0,0,.35);
       position: relative; overflow: hidden;
-      display: flex; flex-direction: column;
+      display: flex; flex-direction: column; gap: 0;
     }
     .page::before {
       content: ''; position: absolute; inset: 5px;
@@ -62,161 +58,177 @@
     }
     .hdr {
       display: flex; align-items: center; justify-content: space-between;
-      padding-bottom: 8px; border-bottom: 3px solid var(--red);
-      margin-bottom: 6px; flex-shrink: 0; position: relative; z-index: 1;
+      padding-bottom: 7px; border-bottom: 3px solid var(--red);
+      margin-bottom: 5px; flex-shrink: 0; position: relative; z-index: 1;
     }
-    .hdr-logos { display: flex; align-items: center; gap: 5px; }
-    .hdr-logo { height: 58px; width: 58px; object-fit: contain; filter: drop-shadow(0 1px 4px rgba(0,0,0,.2)); }
+    .hdr-logos { display: flex; align-items: center; gap: 4px; }
+    .hdr-logo  { height: 54px; width: 54px; object-fit: contain; }
     .hdr-logo-fb {
-      height: 58px; width: 58px; border-radius: 50%;
+      height: 54px; width: 54px; border-radius: 50%;
       background: linear-gradient(135deg, var(--red), var(--brown));
       display: flex; align-items: center; justify-content: center;
-      font-size: 20px; flex-shrink: 0; color: white; font-weight: 700;
+      color: white; font-weight: 700; font-size: 15px; flex-shrink: 0;
     }
-    .hdr-center { text-align: center; flex: 1; padding: 0 10px; }
-    .hdr-eyebrow { font-size: 7.5px; letter-spacing: 3.5px; color: var(--gold); text-transform: uppercase; font-weight: 700; }
-    .hdr-title   { font-family: 'Cinzel', serif; font-size: 31px; font-weight: 700; color: var(--red); line-height: 1; letter-spacing: -.5px; }
-    .hdr-sub     { font-size: 7px; color: #aaa; letter-spacing: 1.5px; margin-top: 2px; text-transform: uppercase; }
-    .lema { text-align: center; margin-bottom: 7px; flex-shrink: 0; position: relative; z-index: 1; }
+    .hdr-center { text-align: center; flex: 1; padding: 0 8px; }
+    .hdr-eye    { font-size: 7px; letter-spacing: 3.5px; color: var(--gold); text-transform: uppercase; font-weight: 700; }
+    .hdr-title  { font-family: 'Cinzel', serif; font-size: 30px; font-weight: 700; color: var(--red); line-height: 1; }
+    .hdr-sub    { font-size: 6.5px; color: #aaa; letter-spacing: 1.5px; margin-top: 2px; text-transform: uppercase; }
+    .lema { text-align: center; margin-bottom: 6px; flex-shrink: 0; z-index: 1; }
     .lema-pill {
-      display: inline-flex; align-items: center; gap: 9px;
+      display: inline-flex; align-items: center; gap: 8px;
       background: linear-gradient(135deg, var(--red), #a02828);
-      color: white; padding: 3px 22px 4px; border-radius: 30px;
-      font-size: 9.5px; letter-spacing: 2px; box-shadow: 0 2px 10px rgba(123,24,24,.28);
+      color: white; padding: 3px 20px 4px; border-radius: 30px;
+      font-size: 9px; letter-spacing: 2px; box-shadow: 0 2px 10px rgba(123,24,24,.28);
     }
-    .lema-label { opacity: .65; font-size: 7.5px; letter-spacing: 3px; text-transform: uppercase; }
-    .lema-text  { font-style: italic; font-weight: 700; font-size: 11px; }
-    .lema-dot   { opacity: .35; }
+    .lema-lbl  { opacity: .65; font-size: 7px; letter-spacing: 3px; text-transform: uppercase; }
+    .lema-text { font-style: italic; font-weight: 700; font-size: 10.5px; }
+    .lema-dot  { opacity: .35; }
     .grid2 {
       display: grid; grid-template-columns: 1fr 1fr; gap: 9px;
-      margin-bottom: 8px; flex-shrink: 0; position: relative; z-index: 1;
+      margin-bottom: 7px; flex: 1; min-height: 160px; z-index: 1;
     }
-    .card { background: white; border-radius: 7px; padding: 10px 12px; border-left: 3.5px solid var(--red); box-shadow: var(--sh); }
-    .card.c-green { border-left-color: var(--green); }
-    .card.c-gold  { border-left-color: var(--gold); }
-    .c-title {
+    .card {
+      background: white; border-radius: 7px; padding: 10px 12px;
+      border-left: 3.5px solid var(--red); box-shadow: 0 1px 5px rgba(0,0,0,.09);
+    }
+    .card.cg { border-left-color: var(--green); }
+    .card.co { border-left-color: var(--gold); }
+    .ctit {
       font-family: 'Cinzel', serif; font-size: 7px; font-weight: 700;
       letter-spacing: 2.5px; text-transform: uppercase; color: var(--red);
-      margin-bottom: 7px; display: flex; align-items: center; gap: 5px; white-space: nowrap;
+      margin-bottom: 7px; display: flex; align-items: center; gap: 4px; white-space: nowrap;
     }
-    .card.c-green .c-title { color: var(--green); }
-    .card.c-gold  .c-title { color: #8B6500; }
-    .c-title::after { content: ''; flex: 1; height: 1px; background: currentColor; opacity: .2; min-width: 8px; }
-    .oracion-layout { display: flex; gap: 10px; align-items: flex-start; }
-    .oracion-img-wrap {
-      width: 70px; height: 95px; border-radius: 6px; overflow: hidden;
-      flex-shrink: 0; background: #3a2010; box-shadow: 0 2px 8px rgba(0,0,0,.25);
+    .card.cg .ctit { color: var(--green); }
+    .card.co .ctit { color: #8B6500; }
+    .ctit::after { content: ''; flex: 1; height: 1px; background: currentColor; opacity: .2; min-width: 6px; }
+    .oracion-row { display: flex; gap: 10px; align-items: flex-start; }
+    .oimg-wrap {
+      width: 70px; height: 100%; min-height: 90px; max-height: 110px;
+      border-radius: 6px; overflow: hidden;
+      flex-shrink: 0; background: #3a2010; box-shadow: 0 2px 7px rgba(0,0,0,.22);
     }
-    .oracion-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; filter: sepia(15%) contrast(1.08); }
-    .oracion-body { font-size: 9.5px; line-height: 1.68; color: var(--gray); font-style: italic; }
-    .oracion-amen { display: block; margin-top: 5px; font-style: normal; font-weight: 700; color: var(--red); font-size: 10px; }
+    .oimg-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; filter: sepia(15%) contrast(1.05); }
+    .otxt  { font-size: 10.5px; line-height: 1.72; color: var(--gray); font-style: italic; }
+    .oamen { display: block; margin-top: 5px; font-style: normal; font-weight: 700; color: var(--red); font-size: 10.5px; }
     .ley-item {
-      font-size: 9.5px; color: var(--gray); font-style: italic;
-      padding: 4px 0 4px 9px; border-left: 2.5px solid var(--green);
-      margin-bottom: 5px; line-height: 1.45;
+      font-size: 10.5px; color: var(--gray); font-style: italic;
+      padding: 5px 0 5px 9px; border-left: 2.5px solid var(--green);
+      margin-bottom: 7px; line-height: 1.5;
     }
     .ley-item:last-child { margin-bottom: 0; }
-    .promesa-body { font-size: 9.5px; line-height: 1.68; color: var(--gray); }
-    .promesa-intro { font-weight: 700; color: #7A5800; font-style: normal; }
-    .right-col { display: flex; flex-direction: column; gap: 8px; }
-    .maximas-wrap { margin-bottom: 8px; flex-shrink: 0; position: relative; z-index: 1; }
-    .section-title {
-      font-family: 'Cinzel', serif; font-size: 7.5px; font-weight: 700;
+    .ptxt  { font-size: 10.5px; line-height: 1.72; color: var(--gray); }
+    .pintro{ font-weight: 700; color: #7A5800; }
+    .rcol  { display: flex; flex-direction: column; gap: 8px; }
+    .max-wrap { margin-bottom: 7px; flex-shrink: 0; z-index: 1; }
+    .sec-tit {
+      font-family: 'Cinzel', serif; font-size: 7px; font-weight: 700;
       letter-spacing: 3px; text-transform: uppercase; color: var(--brown);
-      text-align: center; margin-bottom: 6px;
-      display: flex; align-items: center; gap: 8px;
+      text-align: center; margin-bottom: 5px;
+      display: flex; align-items: center; gap: 7px;
     }
-    .section-title::before, .section-title::after { content: ''; flex: 1; height: 1px; background: var(--brown); opacity: .2; }
-    .maximas-row { display: flex; gap: 6px; }
-    .maxima {
-      flex: 1; border-radius: 9px; padding: 10px 7px 12px;
-      text-align: center; position: relative; cursor: help;
-      transition: transform .15s, box-shadow .15s; color: white; overflow: visible;
+    .sec-tit::before, .sec-tit::after { content: ''; flex: 1; height: 1px; background: var(--brown); opacity: .2; }
+    .max-row { display: flex; gap: 6px; }
+    .max {
+      flex: 1; border-radius: 9px; padding: 10px 6px 12px;
+      text-align: center; color: white; position: relative;
+      cursor: help; transition: transform .15s, box-shadow .15s; overflow: visible;
     }
-    .maxima:hover { transform: translateY(-3px); box-shadow: 0 7px 20px rgba(0,0,0,.22); }
-    .maxima:nth-child(1) { background: linear-gradient(155deg, #7B1818, #A02828); }
-    .maxima:nth-child(2) { background: linear-gradient(155deg, #8B3A10, #B04C20); }
-    .maxima:nth-child(3) { background: linear-gradient(155deg, #5C3317, #7A4A25); }
-    .maxima:nth-child(4) { background: linear-gradient(155deg, #1E5C1A, #2A7A24); }
-    .maxima:nth-child(5) { background: linear-gradient(155deg, #1E3A6E, #2A5090); }
-    .maxima-n { font-family: 'Cinzel', serif; font-size: 24px; font-weight: 700; opacity: .2; line-height: 1; }
-    .maxima-t { font-size: 7.5px; font-weight: 700; line-height: 1.35; margin-top: 3px; letter-spacing: .2px; }
+    .max:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.2); }
+    .max:nth-child(1){ background: linear-gradient(155deg,#7B1818,#A02828); }
+    .max:nth-child(2){ background: linear-gradient(155deg,#8B3A10,#B04C20); }
+    .max:nth-child(3){ background: linear-gradient(155deg,#5C3317,#7A4A25); }
+    .max:nth-child(4){ background: linear-gradient(155deg,#1E5C1A,#2A7A24); }
+    .max:nth-child(5){ background: linear-gradient(155deg,#1E3A6E,#2A5090); }
+    .max-n { font-family: 'Cinzel', serif; font-size: 26px; font-weight: 700; opacity: .2; line-height: 1; }
+    .max-t { font-size: 8px; font-weight: 700; line-height: 1.35; margin-top: 3px; }
     .tip {
-      display: none; position: absolute; bottom: calc(100% + 8px); left: 50%;
+      display: none; position: absolute; bottom: calc(100% + 7px); left: 50%;
       transform: translateX(-50%);
-      background: rgba(12,12,12,.93); backdrop-filter: blur(6px);
-      color: #eee; font-size: 8px; line-height: 1.5;
-      padding: 7px 9px; border-radius: 7px; width: 140px;
-      text-align: left; z-index: 200; pointer-events: none;
-      box-shadow: 0 6px 20px rgba(0,0,0,.4);
+      background: rgba(10,10,10,.93); color: #eee;
+      font-size: 8px; line-height: 1.5; padding: 6px 9px; border-radius: 6px;
+      width: 140px; text-align: left; z-index: 200; pointer-events: none;
+      box-shadow: 0 5px 18px rgba(0,0,0,.35);
     }
     .tip::after {
       content: ''; position: absolute; top: 100%; left: 50%;
       transform: translateX(-50%); border: 5px solid transparent;
-      border-top-color: rgba(12,12,12,.93);
+      border-top-color: rgba(10,10,10,.93);
     }
-    .maxima:hover .tip, .personaje:hover .tip { display: block; }
-    .personajes-wrap {
-      flex: 1; display: flex; flex-direction: column;
-      position: relative; z-index: 1; min-height: 0;
+    .max:hover .tip { display: block; }
+    .pj-wrap { flex-shrink: 0; z-index: 1; }
+    .pj-row { display: flex; gap: 6px; }
+    .pj-card {
+      flex: 1; background: white; border-radius: 8px;
+      padding: 7px 5px 8px;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; gap: 3px;
+      box-shadow: 0 1px 5px rgba(0,0,0,.09);
+      border-top: 3px solid var(--gold);
     }
-    .personajes-band {
-      flex: 1; background: linear-gradient(to bottom, rgba(92,51,23,.06), rgba(92,51,23,.12));
-      border-radius: 10px; border: 1px solid rgba(200,146,10,.2);
-      padding: 10px 12px 12px; display: flex; flex-direction: column;
+    .pj-card:nth-child(1){ border-top-color: #7B1818; }
+    .pj-card:nth-child(2){ border-top-color: #1E5C1A; }
+    .pj-card:nth-child(3){ border-top-color: #1E3A6E; }
+    .pj-card:nth-child(4){ border-top-color: #8B3A10; }
+    .pj-card:nth-child(5){ border-top-color: #4A0E4E; }
+    .pj-card:nth-child(6){ border-top-color: #8B1A1A; }
+    .pj-circle {
+      border-radius: 50%;
+      border: 2.5px solid var(--gold);
+      overflow: hidden;
+      background: var(--brown);
+      box-shadow: 0 2px 7px rgba(0,0,0,.2);
+      flex-shrink: 0;
+      width: 58px; height: 58px;
     }
-    .personajes-row { flex: 1; display: flex; gap: 8px; align-items: center; }
-    .personaje {
-      flex: 1; display: flex; flex-direction: column; align-items: center;
-      text-align: center; position: relative; cursor: help; gap: 4px;
-    }
-    .pj-ring {
-      border-radius: 50%; border: 3px solid var(--gold); overflow: hidden;
-      background: var(--brown); flex-shrink: 0;
-      box-shadow: 0 4px 14px rgba(0,0,0,.25), 0 0 0 1px rgba(200,146,10,.25);
-      transition: box-shadow .2s, transform .2s;
-      width: var(--pj-size, 110px); height: var(--pj-size, 110px);
-    }
-    .personaje:hover .pj-ring {
-      box-shadow: 0 7px 22px rgba(0,0,0,.32), 0 0 0 2.5px var(--gold2);
-      transform: scale(1.04);
-    }
-    .pj-ring img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
-    .personaje:hover .pj-ring img { transform: scale(1.08); }
+    .pj-circle img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .pj-ph {
-      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,.7); background: var(--brown);
-      font-family: 'Cinzel', serif; font-weight: 700;
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.75);
+      font-family: 'Cinzel', serif; font-weight: 700; font-size: 20px;
     }
-    .pj-name { font-family: 'Cinzel', serif; font-size: 9px; font-weight: 700; color: var(--brown); line-height: 1.2; }
-    .pj-role { font-size: 7.5px; color: #999; font-style: italic; }
-    .personaje .tip { width: 118px; bottom: calc(100% + 6px); }
-    .page-footer {
-      flex-shrink: 0; margin-top: 7px; padding-top: 5px;
+    .pj-name {
+      font-family: 'Cinzel', serif; font-weight: 700; color: var(--red);
+      font-size: 8.5px; line-height: 1.1; margin-top: 1px;
+    }
+    .pj-card:nth-child(1) .pj-name { color: #7B1818; }
+    .pj-card:nth-child(2) .pj-name { color: #1E5C1A; }
+    .pj-card:nth-child(3) .pj-name { color: #1E3A6E; }
+    .pj-card:nth-child(4) .pj-name { color: #8B3A10; }
+    .pj-card:nth-child(5) .pj-name { color: #4A0E4E; }
+    .pj-card:nth-child(6) .pj-name { color: #8B1A1A; }
+    .pj-role { font-size: 6.5px; color: #999; font-style: italic; line-height: 1.2; }
+    .pj-desc {
+      font-size: 6px; line-height: 1.4; color: var(--gray);
+      margin-top: 1px; text-align: center;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .footer {
+      flex-shrink: 0; margin-top: 5px; padding-top: 4px;
       border-top: 1px solid var(--faint); text-align: center;
-      font-size: 6.5px; color: #bbb; letter-spacing: 1.5px; text-transform: uppercase;
-      position: relative; z-index: 1;
+      font-size: 6px; color: #bbb; letter-spacing: 1.5px; text-transform: uppercase;
     }
     @media print {
       body { background: white !important; padding: 0; margin: 0; }
       .ctrl-bar { display: none !important; }
-      .page { width: 8.5in !important; height: 11in !important; box-shadow: none !important; padding: .36in .44in .30in !important; }
+      .page {
+        width: 8.5in !important; height: 11in !important;
+        box-shadow: none !important; padding: .30in .42in .26in !important;
+      }
       @page { size: letter portrait; margin: 0; }
       .tip { display: none !important; }
-      .maxima, .personaje { cursor: default; }
-      .pj-ring { box-shadow: 0 2px 6px rgba(0,0,0,.18) !important; transform: none !important; }
-      .hdr-logo { filter: none; }
+      .max { cursor: default; }
     }
   </style>
 </head>
 <body>
-
 <script>
 const IMG = {
-  florDeLis:   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbDuqJLNhCp28m29TX6bZdrXO6ZLJfCqS-rA&s',
-  logoGrupo:   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSe5CtHjlCiRvxDNPNKURbyHIccBa860M11Q&s',
-  logoManada:  'https://danend28.github.io/Plantilla-Programa-Scout/images/rama-manada.jpg',
-  loboOracion: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Howlsnow.jpg/400px-Howlsnow.jpg',
+  flor:    'images/flor.png',
+  grupo:   'images/grupo.png',
+  manada:  'images/manada.jpg',
+  lobo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Howlsnow.jpg/400px-Howlsnow.jpg',
   hathi:    'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Asian_elephant_-_melbourne_zoo.jpg/400px-Asian_elephant_-_melbourne_zoo.jpg',
   kaa:      'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Python_molurus.jpg/400px-Python_molurus.jpg',
   akela:    'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Howlsnow.jpg/400px-Howlsnow.jpg',
@@ -224,46 +236,43 @@ const IMG = {
   bagheera: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Leopard_4.5.jpg/400px-Leopard_4.5.jpg',
   raksha:   'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Mexican_wolf_fg03.jpg/400px-Mexican_wolf_fg03.jpg',
 };
-
 const TEXTOS = {
   nino: {
-    titulo: 'Cachorro', pronombre: 'del Lobato',
-    oracion: 'Oh Dulce y buen señor mío,<br>enséñame a ser humilde y bondadoso,<br>a imitar tu ejemplo,<br>a amarte con todo mi corazón<br>y a seguir el camino que me ha de llevar<br>al cielo junto a ti.',
-    ley: ['El Lobato escucha y obedece al Viejo Lobo.', 'El Lobato se vence a sí mismo.'],
+    titulo: 'Cachorro', pron: 'del Lobato',
+    oracion: 'Oh Dulce y buen señor mío,<br>enïséáñame a ser humilde y bondadoso,<br>a imitar tu ejemplo,<br>a amarte con todo mi corazón<br>y a seguir el camino que me ha de llevar<br>al cielo junto a ti.',
+    ley: ['El Lobato escucha y obedece al Viejo Lobo.','El Lobato se vence a sí mismo.'],
     promesa: 'Cumplir mis deberes para con Dios y la patria,<br>obedecer la Ley de la Manada<br>y hacer una buena acción a alguien cada día.',
     maximas: [
-      { texto: 'El Lobato siempre está alegre',                    tip: 'Un lobato alegre contagia energía positiva a su seisena y hace que cada actividad sea una aventura para todos.' },
-      { texto: 'El Lobato siempre está limpio',                    tip: 'La limpieza en el cuerpo, la ropa y el entorno refleja respeto hacia uno mismo y hacia los demás.' },
-      { texto: 'El Lobato siempre dice la verdad',                 tip: 'La honestidad es la base de la confianza. Un lobato veraz es confiable para su seisena y su familia.' },
-      { texto: 'El Lobato tiene los ojos y oídos bien abiertos',  tip: 'Estar atento al entorno te permite ayudar a quienes lo necesitan y aprender de todo lo que te rodea.' },
-      { texto: 'El Lobato piensa primero en los demás',            tip: 'El servicio es el corazón del escultismo. Pensar en los demás antes que en uno mismo nos hace mejores personas.' },
+      { t:'El Lobato siempre está alegre', tip:'Un lobato alegre contagia energía positiva y hace cada actividad más divertida para toda la seisena.' },
+      { t:'El Lobato siempre está limpio', tip:'Cuidar el cuerpo, la ropa y el lugar donde estás es una forma de respetarse a uno mismo y a los demás.' },
+      { t:'El Lobato siempre dice la verdad', tip:'La honestidad genera confianza. Un lobato que dice la verdad es alguien en quien todos pueden confiar.' },
+      { t:'El Lobato tiene los ojos y oídos bien abiertos', tip:'Estar atento te permite notar cuando alguien necesita ayuda y aprender de todo lo que sucede a tu alrededor.' },
+      { t:'El Lobato piensa primero en los demás', tip:'El servicio es el corazón del escultismo. Pensar en los demás antes que en uno mismo nos hace mejores personas.' },
     ],
   },
   nina: {
-    titulo: 'Cachorra', pronombre: 'de la Lobezna',
-    oracion: 'Oh Dulce y buen señor mío,<br>enséñame a ser humilde y bondadosa,<br>a imitar tu ejemplo,<br>a amarte con todo mi corazón<br>y a seguir el camino que me ha de llevar<br>al cielo junto a ti.',
-    ley: ['La Lobezna escucha y obedece al Viejo Lobo.', 'La Lobezna se vence a sí misma.'],
+    titulo: 'Cachorra', pron: 'de la Lobezna',
+    oracion: 'Oh Dulce y buen señor mío,<br>enïséáñame a ser humilde y bondadosa,<br>a imitar tu ejemplo,<br>a amarte con todo mi corazón<br>y a seguir el camino que me ha de llevar<br>al cielo junto a ti.',
+    ley: ['La Lobezna escucha y obedece al Viejo Lobo.','La Lobezna se vence a sí misma.'],
     promesa: 'Cumplir mis deberes para con Dios y la patria,<br>obedecer la Ley de la Manada<br>y hacer una buena acción a alguien cada día.',
     maximas: [
-      { texto: 'La Lobezna siempre está alegre',                    tip: 'Una lobezna alegre contagia energía positiva a su seisena y hace que cada actividad sea una aventura para todos.' },
-      { texto: 'La Lobezna siempre está limpia',                    tip: 'La limpieza en el cuerpo, la ropa y el entorno refleja respeto hacia una misma y hacia los demás.' },
-      { texto: 'La Lobezna siempre dice la verdad',                 tip: 'La honestidad es la base de la confianza. Una lobezna veraz es confiable para su seisena y su familia.' },
-      { texto: 'La Lobezna tiene los ojos y oídos bien abiertos',  tip: 'Estar atenta al entorno te permite ayudar a quienes lo necesitan y aprender de todo lo que te rodea.' },
-      { texto: 'La Lobezna piensa primero en los demás',            tip: 'El servicio es el corazón del escultismo. Pensar en los demás antes que en una misma nos hace mejores personas.' },
+      { t:'La Lobezna siempre está alegre', tip:'Una lobezna alegre contagia energía positiva y hace cada actividad más divertida para toda la seisena.' },
+      { t:'La Lobezna siempre está limpia', tip:'Cuidar el cuerpo, la ropa y el lugar donde estás es una forma de respetarse a una misma y a los demás.' },
+      { t:'La Lobezna siempre dice la verdad', tip:'La honestidad genera confianza. Una lobezna que dice la verdad es alguien en quien todos pueden confiar.' },
+      { t:'La Lobezna tiene los ojos y oídos bien abiertos', tip:'Estar atenta te permite notar cuando alguien necesita ayuda y aprender de todo lo que sucede a tu alrededor.' },
+      { t:'La Lobezna piensa primero en los demás', tip:'El servicio es el corazón del escultismo. Pensar en los demás antes que en una misma nos hace mejores personas.' },
     ],
   },
 };
-
-const PERSONAJES = [
-  { key: 'hathi',    nombre: 'Hathi',    rol: 'El Elefante',      ph: 'H', desc: 'Rey y guardián de la selva. Sabiduría ancestral, memoria y fuerza serena. Custodio de las leyes más antiguas.' },
-  { key: 'kaa',      nombre: 'Kaa',      rol: 'La Gran Pitón',  ph: 'K', desc: 'Símbolo del conocimiento profundo. Guardián leal del código de la selva y protector de los más jóvenes.' },
-  { key: 'akela',    nombre: 'Akela',    rol: 'El Gran Lobo',     ph: 'A', desc: 'Líder de la Manada del Seeonee. Autoridad justa, responsabilidad y liderazgo sabio y sereno.' },
-  { key: 'baloo',    nombre: 'Baloo',    rol: 'El Oso Maestro',   ph: 'B', desc: 'Maestro paciente de la Ley de la Selva. Alegre y bondadoso, enseña con amor a todos los cachorritos.' },
-  { key: 'bagheera', nombre: 'Bagheera', rol: 'La Pantera Negra', ph: 'B', desc: 'Astuta, elegante y valiente. Protectora incondicional, símbolo de lealtad y coraje silencioso.' },
-  { key: 'raksha',   nombre: 'Raksha',   rol: 'La Loba Madre',    ph: 'R', desc: 'Madre adoptiva de Mowgli. Amor incondicional, protección y ternura. Madre espiritual de todos los lobatos.' },
+const PJS = [
+  { key: 'hathi', nombre: 'Hathi', rol: 'El Elefante', ph: 'H', desc: 'El elefante que recuerda todo. ¡Nadie conoce las leyes de la selva mejor que él!' },
+  { key: 'kaa', nombre: 'Kaa', rol: 'La Gran Pitón', ph: 'K', desc: 'La enorme serpiente que conoce los secretos de la selva y cuida a sus amigos.' },
+  { key: 'akela', nombre: 'Akela', rol: 'El Lobo Jefe', ph: 'A', desc: 'El jefe de la manada de lobos. Manda con justicia y cuida a todos.' },
+  { key: 'baloo', nombre: 'Baloo', rol: 'El Oso Maestro', ph: 'B', desc: 'El oso profe que le enseñó a Mowgli todo lo que sabe. ¡Alegre y con mucha paciencia!' },
+  { key: 'bagheera', nombre: 'Bagheera', rol: 'La Pantera', ph: 'B', desc: 'La pantera más valiente de la selva. Siempre lista para proteger a sus amigos.' },
+  { key: 'raksha', nombre: 'Raksha', rol: 'La Loba Mamá', ph: 'R', desc: 'La mamá loba que adoptó a Mowgli. Nos enseña que el amor de mamá es lo más poderoso.' },
 ];
-<\/script>
-
+</script>
 <div class="ctrl-bar">
   <span class="ctrl-label">Versión</span>
   <div class="ctrl-sep"></div>
@@ -272,125 +281,102 @@ const PERSONAJES = [
   <div class="ctrl-sep"></div>
   <button class="ctrl-btn ctrl-pdf" onclick="window.print()">Guardar PDF / Imprimir</button>
 </div>
-
 <div class="page" id="page">
   <header class="hdr">
     <div class="hdr-logos">
-      <img id="logo-flor"  class="hdr-logo" src="" alt="Flor de Lis Scout" onerror="this.replaceWith(mkFb('⚜'))">
-      <img id="logo-grupo" class="hdr-logo" src="" alt="Grupo Scout La Salle" onerror="this.replaceWith(mkFb('LS'))">
+      <img class="hdr-logo" src="images/flor.png"  alt="Flor de Lis" onerror="this.replaceWith(mkFb('⛜'))">
+      <img class="hdr-logo" src="images/grupo.png" alt="Grupo La Salle" onerror="this.replaceWith(mkFb('LS'))">
     </div>
     <div class="hdr-center">
-      <div class="hdr-eyebrow">Para Ti,</div>
+      <div class="hdr-eye">Para Ti,</div>
       <div class="hdr-title" id="hdr-titulo">Cachorro</div>
-      <div class="hdr-sub">Manada &middot; Grupo Scout La Salle Guaparo N&deg;1</div>
+      <div class="hdr-sub">Manada · Grupo Scout La Salle Guaparo N°1</div>
     </div>
     <div class="hdr-logos">
-      <img id="logo-manada" class="hdr-logo" src="" alt="Rama Manada" onerror="this.replaceWith(mkFb('M'))">
+      <img class="hdr-logo" src="images/manada.jpg" alt="Rama Manada" onerror="this.replaceWith(mkFb('M'))">
     </div>
   </header>
-
   <div class="lema">
     <div class="lema-pill">
-      <span class="lema-label">Lema</span>
-      <span class="lema-dot">&middot;</span>
-      <span class="lema-text">&ldquo;Siempre lo mejor&rdquo;</span>
+      <span class="lema-lbl">Lema</span>
+      <span class="lema-dot">·</span>
+      <span class="lema-text">“Siempre lo mejor”</span>
     </div>
   </div>
-
   <div class="grid2">
     <div class="card">
-      <div class="c-title" id="title-oracion">Oración del Lobato</div>
-      <div class="oracion-layout">
-        <div class="oracion-img-wrap">
-          <img id="img-lobo" src="" alt="Lobo" onerror="this.parentElement.style.background='#3a2010'; this.style.display='none'">
+      <div class="ctit" id="tit-oracion">Oración del Lobato</div>
+      <div class="oracion-row">
+        <div class="oimg-wrap">
+          <img id="img-lobo" src="" alt="Lobo" onerror="this.parentElement.style.background='#3a2010'; this.remove()">
         </div>
-        <div class="oracion-body">
-          <span id="oracion-text"></span>
-          <span class="oracion-amen">Así Sea.</span>
+        <div class="otxt">
+          <span id="oracion-txt"></span>
+          <span class="oamen">Así Sea.</span>
         </div>
       </div>
     </div>
-    <div class="right-col">
-      <div class="card c-green">
-        <div class="c-title">Ley de la Manada</div>
+    <div class="rcol">
+      <div class="card cg">
+        <div class="ctit">Ley de la Manada</div>
         <div id="ley-items"></div>
       </div>
-      <div class="card c-gold">
-        <div class="c-title" id="title-promesa">Promesa del Lobato</div>
-        <div class="promesa-body">
-          <span class="promesa-intro">Prometo hacer lo mejor que pueda por:</span><br>
-          <em id="promesa-text"></em>
+      <div class="card co">
+        <div class="ctit" id="tit-promesa">Promesa del Lobato</div>
+        <div class="ptxt">
+          <span class="pintro">Prometo hacer lo mejor que pueda por:</span><br>
+          <em id="promesa-txt"></em>
         </div>
       </div>
     </div>
   </div>
-
-  <div class="maximas-wrap">
-    <div class="section-title">Máximas de la Manada</div>
-    <div class="maximas-row" id="maximas-row"></div>
+  <div class="max-wrap">
+    <div class="sec-tit">Máximas de la Manada</div>
+    <div class="max-row" id="max-row"></div>
   </div>
-
-  <div class="personajes-wrap">
-    <div class="section-title">Los Personajes del Libro de la Selva</div>
-    <div class="personajes-band">
-      <div class="personajes-row" id="personajes-row"></div>
-    </div>
+  <div class="pj-wrap">
+    <div class="sec-tit">Los Personajes del Libro de la Selva</div>
+    <div class="pj-row" id="pj-row"></div>
   </div>
-
-  <footer class="page-footer">
-    Asociación de Scouts de Venezuela &nbsp;&middot;&nbsp; Región Carabobo &nbsp;&middot;&nbsp;
-    Distrito Valencia Norte &nbsp;&middot;&nbsp; Grupo Scout La Salle Guaparo N&deg;1
-    &nbsp;&middot;&nbsp; Fundado el 26 de abril de 1960
+  <footer class="footer">
+    Asociación de Scouts de Venezuela &nbsp;·&nbsp; Región Carabobo &nbsp;·&nbsp;
+    Distrito Valencia Norte &nbsp;·&nbsp; Grupo Scout La Salle Guaparo N°1
+    &nbsp;·&nbsp; Fundado el 26 de abril de 1960
   </footer>
 </div>
-
 <script>
-function mkFb(txt) {
+function mkFb(t) {
   const d = document.createElement('div');
   d.className = 'hdr-logo-fb';
-  d.textContent = txt;
+  d.textContent = t;
   return d;
 }
-function setLogos() {
-  document.getElementById('logo-flor').src   = IMG.florDeLis;
-  document.getElementById('logo-grupo').src  = IMG.logoGrupo;
-  document.getElementById('logo-manada').src = IMG.logoManada;
-  document.getElementById('img-lobo').src    = IMG.loboOracion;
-}
-function calcPjSize() {
-  const band = document.querySelector('.personajes-band');
-  if (!band) return 100;
-  const h = band.clientHeight - 24;
-  return Math.max(80, Math.min(h - 42, 145));
-}
-function renderPersonajes() {
-  const sz = calcPjSize();
-  document.documentElement.style.setProperty('--pj-size', sz + 'px');
-  document.getElementById('personajes-row').innerHTML = PERSONAJES.map(p => `
-    <div class="personaje">
-      <div class="pj-ring">
+function renderPjs() {
+  document.getElementById('pj-row').innerHTML = PJS.map(p => `
+    <div class="pj-card">
+      <div class="pj-circle">
         <img src="${IMG[p.key]}" alt="${p.nombre}"
-             onerror="this.outerHTML='<div class=pj-ph style=font-size:${Math.round(sz*.28)}px>${p.ph}</div>'">
+             onerror="this.outerHTML='<div class=pj-ph>${p.ph}<\/div>'">
       </div>
       <div class="pj-name">${p.nombre}</div>
       <div class="pj-role">${p.rol}</div>
-      <div class="tip">${p.desc}</div>
+      <div class="pj-desc">${p.desc}</div>
     </div>`).join('');
 }
 function render(g) {
   const t = TEXTOS[g];
   document.getElementById('btn-nino').classList.toggle('active', g === 'nino');
   document.getElementById('btn-nina').classList.toggle('active', g === 'nina');
-  document.getElementById('hdr-titulo').textContent    = t.titulo;
-  document.getElementById('title-oracion').textContent = 'Oración ' + t.pronombre;
-  document.getElementById('title-promesa').textContent = 'Promesa ' + t.pronombre;
-  document.getElementById('oracion-text').innerHTML    = t.oracion + '<br>';
-  document.getElementById('ley-items').innerHTML       = t.ley.map(l => `<div class="ley-item">${l}</div>`).join('');
-  document.getElementById('promesa-text').innerHTML    = t.promesa;
-  document.getElementById('maximas-row').innerHTML     = t.maximas.map((m, i) => `
-    <div class="maxima">
-      <div class="maxima-n">${i + 1}</div>
-      <div class="maxima-t">${m.texto}</div>
+  document.getElementById('hdr-titulo').textContent   = t.titulo;
+  document.getElementById('tit-oracion').textContent  = 'Oración ' + t.pron;
+  document.getElementById('tit-promesa').textContent  = 'Promesa ' + t.pron;
+  document.getElementById('oracion-txt').innerHTML    = t.oracion + '<br>';
+  document.getElementById('ley-items').innerHTML      = t.ley.map(l => `<div class="ley-item">${l}</div>`).join('');
+  document.getElementById('promesa-txt').innerHTML    = t.promesa;
+  document.getElementById('max-row').innerHTML        = t.maximas.map((m, i) => `
+    <div class="max">
+      <div class="max-n">${i + 1}</div>
+      <div class="max-t">${m.t}</div>
       <div class="tip">${m.tip}</div>
     </div>`).join('');
 }
@@ -407,14 +393,12 @@ function scalePage() {
     page.style.transform    = '';
     page.style.marginBottom = '';
   }
-  setTimeout(() => {
-    const sz = calcPjSize();
-    document.documentElement.style.setProperty('--pj-size', sz + 'px');
-  }, 60);
 }
-setLogos(); render('nino'); renderPersonajes(); scalePage();
+document.getElementById('img-lobo').src = IMG.lobo;
+render('nino');
+renderPjs();
+scalePage();
 window.addEventListener('resize', scalePage);
-<\/script>
-
+</script>
 </body>
 </html>
